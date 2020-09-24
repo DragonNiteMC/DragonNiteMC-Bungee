@@ -1,0 +1,20 @@
+host: 127.0.0.1
+port: 3306
+database: database
+username: username
+password: password
+useSSL: false
+Pool:
+  name: HyperNiteMC-Pool
+  minSize: 5
+  maxSize: 10
+  connectionTimeout: 30000
+  idleTimeout: 60000
+  maxLifeTime: 600000
+Redis:
+  enabled: false
+  ip: 127.0.0.1
+  port: 6379
+  timeout: 5 # in sec
+  usePassword: false
+  password: ""

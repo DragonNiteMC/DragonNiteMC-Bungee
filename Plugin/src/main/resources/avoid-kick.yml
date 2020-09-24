@@ -1,0 +1,22 @@
+reasons: #all kick contain these reasons will / will not force connect to lobby server.
+  - "Server Closed"
+  - "重啟中"
+  - "Kick by"
+connect-msg:
+  - "&e你與上一個伺服器(<kick-server>)失去連線"
+  - "&c現將你遣返回大堂。"
+  - "&e失去連線原因:" # 下方為原因
+# whitelist [true] = won't force connect if contain words
+# blacklist [false] = will force connect if contain words
+useAsWhitelist: false
+useCancelServer: true
+customFallBack: #if use cancel server is false
+  # if the server fall back is default fallback server, then no need to set
+  inflobby:
+    - INF-1
+    - INF-2
+  gsglobby:
+    - GSG-1
+    - GSG-2
+  A:
+    - B

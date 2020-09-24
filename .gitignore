@@ -1,0 +1,7 @@
+/.idea/*
+/docs/
+/out/
+/bungee-api/target
+**/dependency-reduced-pom.xml
+**/target
+*.iml

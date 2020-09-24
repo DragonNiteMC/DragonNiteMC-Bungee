@@ -1,0 +1,52 @@
+broadcast-msg:
+  - "&c&m------------------------------"
+  - "<player>"
+  - ""
+  - "&e正在召集 &6<category> &e的 &a<server> &e房間"
+  - ""
+  - "&7➼ 傳送至該遊戲房間"
+  - "&c&m------------------------------"
+hover-msg: "&3點擊以傳送至 &6<category> &3的 &e<server> &3房間"
+fail-msg: "&c召集訊息發佈失敗!"
+fail-global-cool: "&c任何召集訊息的發佈間隔不得少於 <sec> 秒。"
+fail-ind-cool: "&c個人連續發佈召集訊息的間隔不得少於 <sec> 秒。"
+fail-blacklist: "發送失敗。&7此分流無法使用召集系統!"
+start: "&7正在發佈召集訊息..."
+success: " &a召集訊息已成功發佈!"
+player-left-server: "&c此召集訊息的發佈者已經離開了該遊戲房間!"
+already-there: "&c你目前正在 <player> &c所在的遊戲房間!"
+valid: "&a此召集訊息的傳送功能將在 &e<sec> 秒&a後失效!"
+invalid: "&c此召集訊息的傳送功能已經失效。"
+success-join: "&a正在傳送至 <player> &a所在的遊戲房間..."
+fail-join: "&c你無法被傳送至 <player> &c所在的伺服器。"
+join-msg: "&e<player> &7已加入。"
+categories:
+  槍戰生化模式:
+    # this matches every server named BW-4x4-<Numbers>, so BW-4x4-1 and BW-4x4-1281 is matched, but BW-4x4-1x, BW-4x4-e and BW-4x4- is not matched
+    - INF-\d*
+    # this matches every server named BW-7
+  槍戰饑餓遊戲:
+    # this matches every server named UHC-EU-<Number>, so UHC-EU-1 to UHC-EU-9 is matched, but not UHC-EU-10, UHC-EU-11 or similar constructs.
+    - GSG-\d*
+  戰地風雲:
+    - BF-\d*
+  科技空島戰爭:
+    - TSW-\d*
+  部落戰爭:
+    - TW-\d*
+  弓劍生化模式:
+    - INFPVP-\d*
+blacklistServers:
+  - Lobby
+  - \w+lobby
+onlyBroadcastLobbies: false
+lobbyServers:
+  - Lobby
+  - \w+lobby
+permissionUse: joinme.use
+joinValidTime: 60
+globalCooldown: 60
+cmd: joinme
+alias:
+  - invite
+  - inviteplayer
