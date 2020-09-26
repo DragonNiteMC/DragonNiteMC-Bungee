@@ -1,0 +1,5 @@
+enabled_spigot_check: false
+intervalHours: 4
+resourceId_to_checks: {}
+ignore_unknown: true
+use_unequal_check: false

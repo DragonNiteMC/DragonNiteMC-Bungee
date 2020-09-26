@@ -8,6 +8,8 @@ import com.ericlam.mc.bungee.hnmc.implement.caxerx.command.CommandExecutor;
 import com.ericlam.mc.bungee.hnmc.listeners.JoinServerListeners;
 import com.ericlam.mc.bungee.hnmc.main.HNBungeeConfig;
 import com.ericlam.mc.bungee.hnmc.managers.*;
+import com.ericlam.mc.bungee.hnmc.updater.HyperNiteResourceManager;
+import com.ericlam.mc.bungee.hnmc.updater.SpigotResourceManager;
 import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
@@ -38,6 +40,8 @@ public class ModuleImplementor implements Module {
 
         binder.bind(JoinMeManager.class).in(Scopes.SINGLETON);
         binder.bind(JoinServerListeners.class).in(Scopes.SINGLETON);
+        binder.bind(SpigotResourceManager.class).in(Scopes.SINGLETON);
+        binder.bind(HyperNiteResourceManager.class).in(Scopes.SINGLETON);
 
         preImplement.forEach((cls,obj)->binder.bind(cls).toInstance(obj));
     }

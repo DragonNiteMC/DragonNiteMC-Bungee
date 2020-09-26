@@ -9,6 +9,7 @@ import com.ericlam.mc.bungee.hnmc.config.ConfigFactory;
 import com.ericlam.mc.bungee.hnmc.config.MainConfig;
 import com.ericlam.mc.bungee.hnmc.managers.ChatFormatManager;
 import com.ericlam.mc.bungee.hnmc.managers.PlayerManager;
+import com.ericlam.mc.bungee.hnmc.managers.ResourceManager;
 import com.ericlam.mc.bungee.hnmc.managers.SkinValueManager;
 import net.md_5.bungee.api.plugin.Plugin;
 
@@ -64,6 +65,11 @@ public class HyperNiteMC implements HyperNiteAPI {
 
     @Override
     public SkinValueManager getSkinValueManager() {
+        return null;
+    }
+
+    @Override
+    public ResourceManager getResourceManager(ResourceManager.Type type) {
         return null;
     }
 }

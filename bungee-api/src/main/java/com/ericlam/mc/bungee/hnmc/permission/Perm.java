@@ -12,6 +12,7 @@ public class Perm {
     public static final String MOD = "hypernite.mod";
     public static final String BUILDER = "hypernite.builder";
     public static final String DONOR = "hypernite.donor";
+    public static final String DEVELOPER = "hypernite.developer";
     public static final String OWNER = "*";
 
     public static boolean hasPermission(CommandSender sender, String permission) {

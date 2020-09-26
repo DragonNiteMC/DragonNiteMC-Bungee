@@ -21,6 +21,7 @@ public class HNBungeeConfig implements MainConfig {
                 .register(JoinMeConfig.class)
                 .register(LangConfig.class)
                 .register(PlayerLimitConfig.class)
+                .register(VersionCheckerConfig.class)
                 .dump();
         langConfig = yamlManager.getConfigAs(LangConfig.class);
     }
@@ -43,6 +44,10 @@ public class HNBungeeConfig implements MainConfig {
 
     public PlayerLimitConfig getLimit() {
         return yamlManager.getConfigAs(PlayerLimitConfig.class);
+    }
+
+    public VersionCheckerConfig getVersionChecker(){
+        return yamlManager.getConfigAs(VersionCheckerConfig.class);
     }
 
     public void reloadChatFilter() {

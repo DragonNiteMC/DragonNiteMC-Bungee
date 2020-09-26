@@ -10,11 +10,10 @@ import com.ericlam.mc.bungee.hnmc.commands.caxerx.CommandRegister;
 import com.ericlam.mc.bungee.hnmc.config.ConfigFactory;
 import com.ericlam.mc.bungee.hnmc.config.MainConfig;
 import com.ericlam.mc.bungee.hnmc.implement.ChatRunnerClicker;
-import com.ericlam.mc.bungee.hnmc.listeners.AvoidKickListeners;
-import com.ericlam.mc.bungee.hnmc.listeners.JoinServerListeners;
-import com.ericlam.mc.bungee.hnmc.listeners.PlayerDataListener;
-import com.ericlam.mc.bungee.hnmc.listeners.PlayerLimitListeners;
+import com.ericlam.mc.bungee.hnmc.listeners.*;
 import com.ericlam.mc.bungee.hnmc.managers.*;
+import com.ericlam.mc.bungee.hnmc.updater.HyperNiteResourceManager;
+import com.ericlam.mc.bungee.hnmc.updater.SpigotResourceManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import net.luckperms.api.LuckPermsProvider;
@@ -39,6 +38,9 @@ public class HyperNiteMC extends Plugin implements HyperNiteAPI {
     private RedisDataSource redisDataSource;
     private JoinServerListeners joinServerListeners;
     private JoinMeManager joinMeManager;
+    private SpigotResourceManager spigotResourceManager;
+    private HyperNiteResourceManager hyperNiteResourceManager;
+
     private final ModuleImplementor moduleImplementor = new ModuleImplementor();
 
     public static HNBungeeConfig getHnBungeeConfig() {
@@ -70,6 +72,8 @@ public class HyperNiteMC extends Plugin implements HyperNiteAPI {
         joinMeManager = injector.getInstance(JoinMeManager.class);
         joinServerListeners = injector.getInstance(JoinServerListeners.class);
         hnBungeeConfig = (HNBungeeConfig) mainConfig;
+        spigotResourceManager = injector.getInstance(SpigotResourceManager.class);
+        hyperNiteResourceManager = injector.getInstance(HyperNiteResourceManager.class);
         if (hnBungeeConfig.getDatabaseConfig().Redis.enabled){
             redisDataSource = injector.getInstance(RedisDataSource.class);
         }
@@ -92,7 +96,7 @@ public class HyperNiteMC extends Plugin implements HyperNiteAPI {
         pluginManager.registerListener(this, new PlayerLimitListeners());
         pluginManager.registerListener(this, new PlayerDataListener(manager));
         pluginManager.registerListener(this, (ChatRunnerClicker)chatRunnerManager);
-
+        pluginManager.registerListener(this, new VersionUpdateListener(this));
 
         this.getLogger().info("HyperNiteMC-Bungee v" + this.getDescription().getVersion() + " has been enabled.");
     }
@@ -140,5 +144,10 @@ public class HyperNiteMC extends Plugin implements HyperNiteAPI {
     @Override
     public SkinValueManager getSkinValueManager() {
         return skinValueManager;
+    }
+
+    @Override
+    public ResourceManager getResourceManager(ResourceManager.Type type) {
+        return type == ResourceManager.Type.SPIGOT ? spigotResourceManager : hyperNiteResourceManager;
     }
 }
