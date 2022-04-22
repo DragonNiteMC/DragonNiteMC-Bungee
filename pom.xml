@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hypernite.mc</groupId>
-    <artifactId>hypernitemc-bungee</artifactId>
+    <groupId>com.dragonnite.mc</groupId>
+    <artifactId>dragonnitemc-bungee</artifactId>
     <version>2.6.3</version>
 
     <packaging>pom</packaging>
@@ -13,8 +13,8 @@
     </modules>
 
 
-    <name>HyperNiteMC-Bungee</name>
-    <description>HyperNiteMC Bungee</description>
+    <name>DragonNiteMC-Bungee</name>
+    <description>DragonNiteMC Bungee</description>
     <url>https://github.com/eric2788/</url>
     <developers>
         <developer>
@@ -35,8 +35,8 @@
 
     <repositories>
         <repository>
-            <id>hypernite</id>
-            <url>https://nexus.chu77.xyz/repository/developer/</url>
+            <id>dragonnite</id>
+            <url>https://nexus.pulogo.xyz/repository/developer/</url>
         </repository>
     </repositories>
 
@@ -44,7 +44,7 @@
     <dependencies>
         <dependency>
             <groupId>waterfall</groupId>
-            <artifactId>1.16</artifactId>
+            <artifactId>1.18</artifactId>
         </dependency>
     </dependencies>
 
@@ -53,19 +53,19 @@
             <dependency>
                 <groupId>net.luckperms</groupId>
                 <artifactId>api</artifactId>
-                <version>5.1</version>
+                <version>5.4</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>waterfall</groupId>
-                <artifactId>1.16</artifactId>
-                <version>377</version>
+                <artifactId>1.18</artifactId>
+                <version>483</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.dataformat</groupId>
                 <artifactId>jackson-dataformat-yaml</artifactId>
-                <version>2.11.2</version>
+                <version>2.13.2</version>
                 <scope>compile</scope>
                 <exclusions>
                     <exclusion>
@@ -77,13 +77,13 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
-                <version>2.11.2</version>
+                <version>2.13.2</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.12.6.1</version>
+                <version>2.13.2</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
@@ -95,14 +95,14 @@
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>3.1.0-m3</version>
+                <version>3.2.0</version>
                 <scope>compile</scope>
                 <optional>true</optional>
             </dependency>
             <dependency>
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
-                <version>4.2.2</version>
+                <version>5.1.0</version>
                 <scope>compile</scope>
                 <optional>true</optional>
                 <exclusions>
@@ -119,7 +119,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.8</version>
+                <version>1.18.22</version>
                 <scope>compile</scope>
             </dependency>
         </dependencies>
@@ -131,7 +131,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>3.10.1</version>
                     <configuration>
                         <release>${java.version}</release>
                         <encoding>${project.build.sourceEncoding}</encoding>
@@ -204,20 +204,20 @@
                     </executions>
                     <configuration>
                         <links>
-                            <link>https://papermc.io/javadocs/waterfall/</link>
+                            <link>https://papermc.io/javadocs/waterfall/1.18/</link>
                         </links>
                         <show>public</show>
                         <linksource>true</linksource>
                         <isOffline>false</isOffline>
                         <encoding>${project.build.sourceEncoding}</encoding>
-                        <windowtitle>HyperNiteBungee-Api</windowtitle>
-                        <doctitle>HyperNiteBungee-Api v${project.version}</doctitle>
+                        <windowtitle>DragonNiteBungee-Api</windowtitle>
+                        <doctitle>DragonNiteBungee-Api v${project.version}</doctitle>
                         <verbose>true</verbose>
                         <author>true</author>
                         <version>true</version>
                         <linksource>true</linksource>
                         <notimestamp>true</notimestamp>
-                        <bottom><![CDATA[<b>© HyperNiteMC - 2020</b>]]></bottom>
+                        <bottom><![CDATA[<b>© DragonNiteMC - 2020</b>]]></bottom>
                         <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
                         <destDir>../docs</destDir>
                         <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
