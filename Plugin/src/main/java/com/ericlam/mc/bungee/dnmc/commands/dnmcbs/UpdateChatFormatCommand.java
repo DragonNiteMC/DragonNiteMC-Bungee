@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.commands.dnmcbs;
 
 import com.ericlam.mc.bungee.dnmc.builders.MessageBuilder;
 import com.ericlam.mc.bungee.dnmc.commands.caxerx.CommandNode;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.ericlam.mc.bungee.dnmc.permission.Perm;
 import net.md_5.bungee.api.CommandSender;
 
@@ -16,12 +16,12 @@ public class UpdateChatFormatCommand extends CommandNode {
 
     @Override
     public void executeCommand(CommandSender sender, List<String> args) {
-        DragonNiteMC.getAPI().getChatFormatManager().updateChatformatTask().whenComplete((v, ex)->{
+        DragoniteMC.getAPI().getChatFormatManager().updateChatformatTask().whenComplete((v, ex)->{
             if (ex != null) {
                 ex.printStackTrace();
                 return;
             }
-            MessageBuilder.sendMessage(sender, DragonNiteMC.getAPI().getMainConfig().getPrefix()+"§a聊天格式更新成功。");
+            MessageBuilder.sendMessage(sender, DragoniteMC.getAPI().getMainConfig().getPrefix()+"§a聊天格式更新成功。");
         });
     }
 

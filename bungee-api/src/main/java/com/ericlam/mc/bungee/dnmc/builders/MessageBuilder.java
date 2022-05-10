@@ -1,7 +1,7 @@
 package com.ericlam.mc.bungee.dnmc.builders;
 
 import com.ericlam.mc.bungee.dnmc.builders.function.ChatRunner;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.*;
@@ -220,9 +220,9 @@ public class MessageBuilder {
         if (this.runner != null) {
             this.command("/command-run-bungee_" + id.toString());
             if (timeoutSeconds > 0) {
-                DragonNiteMC.getAPI().getChatRunnerManager().registerTimeout(id, runner, timeoutSeconds);
+                DragoniteMC.getAPI().getChatRunnerManager().registerTimeout(id, runner, timeoutSeconds);
             } else if (timeoutClicks > 0) {
-                DragonNiteMC.getAPI().getChatRunnerManager().registerClicks(id, runner, timeoutClicks);
+                DragoniteMC.getAPI().getChatRunnerManager().registerClicks(id, runner, timeoutClicks);
             }
         }
         return componentBuilder.create();

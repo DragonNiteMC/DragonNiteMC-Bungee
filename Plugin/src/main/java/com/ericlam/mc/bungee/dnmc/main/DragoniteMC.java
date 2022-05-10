@@ -1,6 +1,6 @@
 package com.ericlam.mc.bungee.dnmc.main;
 
-import com.ericlam.mc.bungee.dnmc.DragonNiteAPI;
+import com.ericlam.mc.bungee.dnmc.DragoniteAPI;
 import com.ericlam.mc.bungee.dnmc.ModuleImplementor;
 import com.ericlam.mc.bungee.dnmc.RedisDataSource;
 import com.ericlam.mc.bungee.dnmc.SQLDataSource;
@@ -12,7 +12,7 @@ import com.ericlam.mc.bungee.dnmc.config.MainConfig;
 import com.ericlam.mc.bungee.dnmc.implement.ChatRunnerClicker;
 import com.ericlam.mc.bungee.dnmc.listeners.*;
 import com.ericlam.mc.bungee.dnmc.managers.*;
-import com.ericlam.mc.bungee.dnmc.updater.DragonNiteResourceManager;
+import com.ericlam.mc.bungee.dnmc.updater.DragoniteResourceManager;
 import com.ericlam.mc.bungee.dnmc.updater.SpigotResourceManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -22,11 +22,11 @@ import net.md_5.bungee.api.plugin.PluginManager;
 
 import java.util.Optional;
 
-public class DragonNiteMC extends Plugin implements DragonNiteAPI {
+public class DragoniteMC extends Plugin implements DragoniteAPI {
 
     public static Plugin plugin;
 
-    private static DragonNiteAPI diPlugin;
+    private static DragoniteAPI diPlugin;
     private static DNBungeeConfig dnBungeeConfig;
     private SQLDataSource dataSource;
     private ChatRunnerManager chatRunnerManager;
@@ -39,7 +39,7 @@ public class DragonNiteMC extends Plugin implements DragonNiteAPI {
     private JoinServerListeners joinServerListeners;
     private JoinMeManager joinMeManager;
     private SpigotResourceManager spigotResourceManager;
-    private DragonNiteResourceManager dragonNiteResourceManager;
+    private DragoniteResourceManager dragoniteResourceManager;
 
     private final ModuleImplementor moduleImplementor = new ModuleImplementor();
 
@@ -47,7 +47,7 @@ public class DragonNiteMC extends Plugin implements DragonNiteAPI {
         return dnBungeeConfig;
     }
 
-    public static DragonNiteAPI getAPI() {
+    public static DragoniteAPI getAPI() {
         return diPlugin;
     }
 
@@ -59,7 +59,7 @@ public class DragonNiteMC extends Plugin implements DragonNiteAPI {
     public void onLoad() {
         diPlugin = this;
         register(Plugin.class, this);
-        register(DragonNiteAPI.class, this);
+        register(DragoniteAPI.class, this);
         Injector injector = Guice.createInjector(moduleImplementor);
         dataSource = injector.getInstance(SQLDataSource.class);
         chatRunnerManager = injector.getInstance(ChatRunnerManager.class);
@@ -73,7 +73,7 @@ public class DragonNiteMC extends Plugin implements DragonNiteAPI {
         joinServerListeners = injector.getInstance(JoinServerListeners.class);
         dnBungeeConfig = (DNBungeeConfig) mainConfig;
         spigotResourceManager = injector.getInstance(SpigotResourceManager.class);
-        dragonNiteResourceManager = injector.getInstance(DragonNiteResourceManager.class);
+        dragoniteResourceManager = injector.getInstance(DragoniteResourceManager.class);
         if (dnBungeeConfig.getDatabaseConfig().Redis.enabled){
             redisDataSource = injector.getInstance(RedisDataSource.class);
         }
@@ -89,8 +89,8 @@ public class DragonNiteMC extends Plugin implements DragonNiteAPI {
         pluginManager.registerCommand(this, new JoinMeCommand(joinMeManager, getDnBungeeConfig().getJoinMeConfig()));
         pluginManager.registerCommand(this, new PingCommand());
         pluginManager.registerCommand(this, new HubCommand());
-        DragonNiteMC.getAPI().getCommandRegister().registerCommand(this, new DNMCBCommand());
-        DragonNiteMC.getAPI().getCommandRegister().registerCommand(this, new ReloadChatFilterCommand());
+        DragoniteMC.getAPI().getCommandRegister().registerCommand(this, new DNMCBCommand());
+        DragoniteMC.getAPI().getCommandRegister().registerCommand(this, new ReloadChatFilterCommand());
         pluginManager.registerListener(this, joinServerListeners);
         pluginManager.registerListener(this, new AvoidKickListeners());
         pluginManager.registerListener(this, new PlayerChatListeners());
@@ -98,7 +98,7 @@ public class DragonNiteMC extends Plugin implements DragonNiteAPI {
         pluginManager.registerListener(this, (ChatRunnerClicker)chatRunnerManager);
         pluginManager.registerListener(this, new VersionUpdateListener(this));
 
-        this.getLogger().info("DragonNiteMC-Bungee v" + this.getDescription().getVersion() + " has been enabled.");
+        this.getLogger().info("DragoniteMC-Bungee v" + this.getDescription().getVersion() + " has been enabled.");
     }
 
     @Override
@@ -148,6 +148,6 @@ public class DragonNiteMC extends Plugin implements DragonNiteAPI {
 
     @Override
     public ResourceManager getResourceManager(ResourceManager.Type type) {
-        return type == ResourceManager.Type.SPIGOT ? spigotResourceManager : dragonNiteResourceManager;
+        return type == ResourceManager.Type.SPIGOT ? spigotResourceManager : dragoniteResourceManager;
     }
 }

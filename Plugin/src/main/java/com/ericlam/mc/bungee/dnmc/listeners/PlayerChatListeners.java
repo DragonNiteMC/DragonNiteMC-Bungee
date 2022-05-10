@@ -1,6 +1,6 @@
 package com.ericlam.mc.bungee.dnmc.listeners;
 
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -14,7 +14,7 @@ public class PlayerChatListeners implements Listener {
 
     @EventHandler
     public void onPlayerChat(final ChatEvent e){
-        List<String> filterList = DragonNiteMC.getDnBungeeConfig().getFilter().filterList;
+        List<String> filterList = DragoniteMC.getDnBungeeConfig().getFilter().filterList;
         String messages = e.getMessage();
         if (e.isCommand()) return;
         for (String word : filterList) {

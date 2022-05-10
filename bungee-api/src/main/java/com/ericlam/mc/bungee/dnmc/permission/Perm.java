@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Perm {
-    public static final String ADMIN = "dragonnite.admin";
-    public static final String HELPER = "dragonnite.helper";
-    public static final String MOD = "dragonnite.mod";
-    public static final String BUILDER = "dragonnite.builder";
-    public static final String DONOR = "dragonnite.donor";
-    public static final String DEVELOPER = "dragonnite.developer";
+    public static final String ADMIN = "dragonite.admin";
+    public static final String HELPER = "dragonite.helper";
+    public static final String MOD = "dragonite.mod";
+    public static final String BUILDER = "dragonite.builder";
+    public static final String DONOR = "dragonite.donor";
+    public static final String DEVELOPER = "dragonite.developer";
     public static final String OWNER = "*";
 
     public static boolean hasPermission(CommandSender sender, String permission) {

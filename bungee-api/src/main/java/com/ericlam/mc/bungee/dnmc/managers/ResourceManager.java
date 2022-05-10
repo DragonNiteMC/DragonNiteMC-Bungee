@@ -21,9 +21,9 @@ public interface ResourceManager {
          */
         SPIGOT,
         /**
-         * DragonNiteMC 專用插件
+         * DragoniteMC 專用插件
          */
-        DRAGONNITE
+        DRAGONITE
     }
 
     /**

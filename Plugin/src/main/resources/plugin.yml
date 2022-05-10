@@ -1,5 +1,5 @@
-name: DragonNiteMC-Bungee
-main: com.ericlam.mc.bungee.dnmc.main.DragonNiteMC
+name: DragoniteMC-Bungee
+main: com.ericlam.mc.bungee.dnmc.main.DragoniteMC
 version: ${project.version}
 author: Eric Lam
 depends: [LuckPerms]

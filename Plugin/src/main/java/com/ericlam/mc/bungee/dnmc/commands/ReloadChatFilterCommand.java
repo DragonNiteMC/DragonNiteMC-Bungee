@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.commands;
 
 import com.ericlam.mc.bungee.dnmc.builders.MessageBuilder;
 import com.ericlam.mc.bungee.dnmc.commands.caxerx.CommandNode;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.ericlam.mc.bungee.dnmc.permission.Perm;
 import net.md_5.bungee.api.CommandSender;
 
@@ -17,8 +17,8 @@ public class ReloadChatFilterCommand extends CommandNode {
 
     @Override
     public void executeCommand(CommandSender sender, List<String> args) {
-        DragonNiteMC.getDnBungeeConfig().reloadChatFilter();
-        MessageBuilder.sendMessage(sender, DragonNiteMC.getAPI().getMainConfig().getPrefix()+"§e重載成功");
+        DragoniteMC.getDnBungeeConfig().reloadChatFilter();
+        MessageBuilder.sendMessage(sender, DragoniteMC.getAPI().getMainConfig().getPrefix()+"§e重載成功");
     }
 
     @Override

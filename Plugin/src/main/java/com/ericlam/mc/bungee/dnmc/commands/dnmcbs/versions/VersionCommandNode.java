@@ -5,7 +5,7 @@ import com.ericlam.mc.bungee.dnmc.commands.caxerx.CommandNode;
 import com.ericlam.mc.bungee.dnmc.exceptions.PluginNotFoundException;
 import com.ericlam.mc.bungee.dnmc.exceptions.ResourceNotFoundException;
 import com.ericlam.mc.bungee.dnmc.main.DNBungeeConfig;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.ericlam.mc.bungee.dnmc.managers.ResourceManager;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public abstract class VersionCommandNode extends CommandNode {
 
     private static final List<String> plugins = ProxyServer.getInstance().getPluginManager().getPlugins().stream().map(p -> p.getDescription().getName()).collect(Collectors.toList());
-    protected static final DNBungeeConfig config = DragonNiteMC.getDnBungeeConfig();
+    protected static final DNBungeeConfig config = DragoniteMC.getDnBungeeConfig();
 
     public VersionCommandNode(CommandNode parent, String command, String permission, String description, String placeholder, String... alias) {
         super(parent, command, permission, description, placeholder, alias);
@@ -29,9 +29,9 @@ public abstract class VersionCommandNode extends CommandNode {
         var plugin = args.get(0);
         ResourceManager manager;
         if (config.getVersionChecker().resourceId_to_checks.containsKey(plugin)) {
-            manager = DragonNiteMC.getAPI().getResourceManager(ResourceManager.Type.SPIGOT);
+            manager = DragoniteMC.getAPI().getResourceManager(ResourceManager.Type.SPIGOT);
         } else {
-            manager = DragonNiteMC.getAPI().getResourceManager(ResourceManager.Type.DRAGONNITE);
+            manager = DragoniteMC.getAPI().getResourceManager(ResourceManager.Type.DRAGONITE);
         }
         try {
             Plugin resource = ProxyServer.getInstance().getPluginManager().getPlugin(plugin);

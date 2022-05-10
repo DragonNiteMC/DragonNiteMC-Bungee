@@ -5,7 +5,7 @@ import com.ericlam.mc.bungee.dnmc.commands.caxerx.exception.NotExecutableExcepti
 import com.ericlam.mc.bungee.dnmc.commands.caxerx.functional.AdvCmdExecutor;
 import com.ericlam.mc.bungee.dnmc.commands.caxerx.functional.AdvTabCompleter;
 import com.ericlam.mc.bungee.dnmc.config.MainConfig;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 
@@ -108,7 +108,7 @@ public class AdvCommandNodeBuilder<Sender extends CommandSender> {
      */
     @SuppressWarnings("unchecked")
     public CommandNode build() {
-        MainConfig config = DragonNiteMC.getAPI().getMainConfig();
+        MainConfig config = DragoniteMC.getAPI().getMainConfig();
         if (cmdExecutorSender == null) throw new NotExecutableException(command);
         return new CommandNode(parent, command, permission, description, placeholder, alias) {
             @Override

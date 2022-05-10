@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.commands.dnmcbs.skins;
 
 import com.ericlam.mc.bungee.dnmc.builders.MessageBuilder;
 import com.ericlam.mc.bungee.dnmc.commands.caxerx.CommandNode;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.ericlam.mc.bungee.dnmc.managers.PlayerSkinManager;
 import com.ericlam.mc.bungee.dnmc.permission.Perm;
 import net.md_5.bungee.api.CommandSender;
@@ -17,8 +17,8 @@ public class SkinListCommand extends CommandNode {
 
     @Override
     public void executeCommand(CommandSender sender, List<String> args) {
-        PlayerSkinManager skinManager = (PlayerSkinManager) DragonNiteMC.getAPI().getSkinValueManager();
-        new MessageBuilder(DragonNiteMC.getAPI().getMainConfig().getPrefix()+"&a快取資料如下: ").nextLine().add(skinManager.getSkinList().toString()).sendPlayer(sender);
+        PlayerSkinManager skinManager = (PlayerSkinManager) DragoniteMC.getAPI().getSkinValueManager();
+        new MessageBuilder(DragoniteMC.getAPI().getMainConfig().getPrefix()+"&a快取資料如下: ").nextLine().add(skinManager.getSkinList().toString()).sendPlayer(sender);
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.listeners;
 
 import com.ericlam.mc.bungee.dnmc.config.VersionCheckerConfig;
 import com.ericlam.mc.bungee.dnmc.exceptions.ResourceNotFoundException;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.ericlam.mc.bungee.dnmc.managers.ResourceManager;
 import com.ericlam.mc.bungee.dnmc.permission.Perm;
 import net.md_5.bungee.api.ProxyServer;
@@ -21,8 +21,8 @@ public class VersionUpdateListener implements Listener {
 
     private final Map<String, String> updateMap = new ConcurrentHashMap<>();
 
-    public VersionUpdateListener(DragonNiteMC dragonNiteMC) {
-        ProxyServer.getInstance().getScheduler().schedule(dragonNiteMC, new CheckerRunnable(dragonNiteMC), DragonNiteMC.getDnBungeeConfig().getVersionChecker().intervalHours, TimeUnit.HOURS);
+    public VersionUpdateListener(DragoniteMC dragoniteMC) {
+        ProxyServer.getInstance().getScheduler().schedule(dragoniteMC, new CheckerRunnable(dragoniteMC), DragoniteMC.getDnBungeeConfig().getVersionChecker().intervalHours, TimeUnit.HOURS);
     }
 
     @EventHandler
@@ -30,7 +30,7 @@ public class VersionUpdateListener implements Listener {
         if (!e.getPlayer().hasPermission(Perm.DEVELOPER)) return;
         updateMap.forEach((plugin, versions)->{
             var version = versions.split(":");
-            e.getPlayer().sendMessage(DragonNiteMC.getDnBungeeConfig().getPrefix() + "§c 插件更新: " + plugin + " v" + version[1] + ", 最新版本: v" + version[0]);
+            e.getPlayer().sendMessage(DragoniteMC.getDnBungeeConfig().getPrefix() + "§c 插件更新: " + plugin + " v" + version[1] + ", 最新版本: v" + version[0]);
         });
     }
 
@@ -38,11 +38,11 @@ public class VersionUpdateListener implements Listener {
     private class CheckerRunnable implements Runnable {
 
         private final VersionCheckerConfig config;
-        private final DragonNiteMC api;
+        private final DragoniteMC api;
 
-        public CheckerRunnable(DragonNiteMC dragonNiteMC) {
-            this.config = DragonNiteMC.getDnBungeeConfig().getVersionChecker();
-            this.api = dragonNiteMC;
+        public CheckerRunnable(DragoniteMC dragoniteMC) {
+            this.config = DragoniteMC.getDnBungeeConfig().getVersionChecker();
+            this.api = dragoniteMC;
         }
 
         @Override
@@ -59,7 +59,7 @@ public class VersionUpdateListener implements Listener {
                         if (err instanceof IOException) err.printStackTrace();
                     });
                 } else if (!config.resourceId_to_checks.containsKey(plugin)) {
-                    api.getResourceManager(ResourceManager.Type.DRAGONNITE).fetchLatestVersion(plugin, v -> {
+                    api.getResourceManager(ResourceManager.Type.DRAGONITE).fetchLatestVersion(plugin, v -> {
                         if (versionNewer(resource.getDescription().getVersion(), v)){
                             updateMap.put(plugin, v+":"+resource.getDescription().getVersion());
                         }
@@ -76,7 +76,7 @@ public class VersionUpdateListener implements Listener {
     private static final Pattern pt = Pattern.compile("(^[\\d\\.]+)");
 
     public static boolean versionNewer(String versionCurrent, String versionLatest) {
-        var unequal = DragonNiteMC.getDnBungeeConfig().getVersionChecker().use_unequal_check;
+        var unequal = DragoniteMC.getDnBungeeConfig().getVersionChecker().use_unequal_check;
         if (unequal) return versionCurrent.equals(versionLatest);
         else {
             if (versionCurrent.equals(versionLatest)) return true;

@@ -3,7 +3,7 @@ package com.ericlam.mc.bungee.dnmc.commands;
 import com.ericlam.mc.bungee.dnmc.builders.MessageBuilder;
 import com.ericlam.mc.bungee.dnmc.config.JoinMeConfig;
 import com.ericlam.mc.bungee.dnmc.main.DNBungeeConfig;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.ericlam.mc.bungee.dnmc.managers.JoinMeManager;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -103,7 +103,7 @@ public class JoinMeCommand extends Command {
 
         for (ServerInfo broadcastSer : broadcastSers) {
             broadcastSer.getPlayers().forEach(p -> {
-                String[] broadcast = joinme.getList("broadcast-msg").stream().map(line -> line.replaceAll("<player>", DragonNiteMC.getAPI().getChatFormatManager().getPrefix(player) + player.getDisplayName()).replaceAll("<category>", finalCategory).replaceAll("<server>", player_server_name)).toArray(String[]::new);
+                String[] broadcast = joinme.getList("broadcast-msg").stream().map(line -> line.replaceAll("<player>", DragoniteMC.getAPI().getChatFormatManager().getPrefix(player) + player.getDisplayName()).replaceAll("<category>", finalCategory).replaceAll("<server>", player_server_name)).toArray(String[]::new);
                 String hover = joinme.getPure("hover-msg").replaceAll("<category>", finalCategory).replaceAll("<server>", player_server_name);
                 BaseComponent[] msg = new MessageBuilder(broadcast).hoverText(hover).command(uid + "_" + playerUUID).build();
                 player.sendMessage(msg);

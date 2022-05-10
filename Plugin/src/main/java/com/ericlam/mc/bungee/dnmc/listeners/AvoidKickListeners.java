@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.listeners;
 
 import com.ericlam.mc.bungee.dnmc.builders.MessageBuilder;
 import com.ericlam.mc.bungee.dnmc.config.AvoidKickConfig;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -25,7 +25,7 @@ public class AvoidKickListeners implements Listener {
     }
 
     public AvoidKickListeners() {
-        avoid = DragonNiteMC.getDnBungeeConfig().getAvoid_back();
+        avoid = DragoniteMC.getDnBungeeConfig().getAvoid_back();
         fallbackList = avoid.customFallBack;
     }
 

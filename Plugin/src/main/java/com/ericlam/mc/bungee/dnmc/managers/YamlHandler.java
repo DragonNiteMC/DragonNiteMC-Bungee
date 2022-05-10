@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.managers;
 
 import com.ericlam.mc.bungee.dnmc.config.YamlManager;
 import com.ericlam.mc.bungee.dnmc.config.yaml.*;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -152,7 +152,7 @@ public class YamlHandler implements YamlManager {
                     @Override
                     public String getPrefix() {
                         var prefix = ins.getClass().getAnnotation(Prefix.class);
-                        return Optional.ofNullable(prefix).map(pre -> translate(configuration.getString(pre.path()))).orElseGet(() -> DragonNiteMC.getDnBungeeConfig().getPrefix());
+                        return Optional.ofNullable(prefix).map(pre -> translate(configuration.getString(pre.path()))).orElseGet(() -> DragoniteMC.getDnBungeeConfig().getPrefix());
                     }
 
                     @Override

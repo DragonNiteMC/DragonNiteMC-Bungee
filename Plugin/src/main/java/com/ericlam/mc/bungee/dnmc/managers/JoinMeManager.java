@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.managers;
 
 import com.ericlam.mc.bungee.dnmc.config.MainConfig;
 import com.ericlam.mc.bungee.dnmc.main.DNBungeeConfig;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.google.inject.Inject;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -30,7 +30,7 @@ public class JoinMeManager {
 
     public void addCooldown(UUID uuid) {
         if (cooldown.add(uuid))
-            ProxyServer.getInstance().getScheduler().schedule(DragonNiteMC.plugin, () -> cooldown.remove(uuid), (long) (joinmeGlobalCooldown * 1.5), TimeUnit.SECONDS);
+            ProxyServer.getInstance().getScheduler().schedule(DragoniteMC.plugin, () -> cooldown.remove(uuid), (long) (joinmeGlobalCooldown * 1.5), TimeUnit.SECONDS);
     }
 
     public boolean isCooldown(UUID uuid) {
@@ -49,8 +49,8 @@ public class JoinMeManager {
         String uuidStr = uuid.toString().replaceAll("-", "");
         if (joinme.putIfAbsent(uuidStr, serverInfo) == null) {
             setGlobalCooling(true);
-            ProxyServer.getInstance().getScheduler().schedule(DragonNiteMC.plugin, () -> joinme.remove(uuidStr), joinmeValidTime, TimeUnit.SECONDS);
-            ProxyServer.getInstance().getScheduler().schedule(DragonNiteMC.plugin, () -> setGlobalCooling(false), joinmeGlobalCooldown, TimeUnit.SECONDS);
+            ProxyServer.getInstance().getScheduler().schedule(DragoniteMC.plugin, () -> joinme.remove(uuidStr), joinmeValidTime, TimeUnit.SECONDS);
+            ProxyServer.getInstance().getScheduler().schedule(DragoniteMC.plugin, () -> setGlobalCooling(false), joinmeGlobalCooldown, TimeUnit.SECONDS);
         }
     }
 

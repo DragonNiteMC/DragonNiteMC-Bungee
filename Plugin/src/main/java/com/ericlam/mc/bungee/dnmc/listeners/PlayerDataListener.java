@@ -3,7 +3,7 @@ package com.ericlam.mc.bungee.dnmc.listeners;
 import com.ericlam.mc.bungee.dnmc.builders.MessageBuilder;
 import com.ericlam.mc.bungee.dnmc.container.OfflineData;
 import com.ericlam.mc.bungee.dnmc.events.PlayerVerifyCompletedEvent;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.ericlam.mc.bungee.dnmc.managers.OfflinePlayerManager;
 import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.ProxyServer;
@@ -27,16 +27,16 @@ public class PlayerDataListener implements Listener {
 
     @EventHandler
     public void onPlayerLogin(final PreLoginEvent e) {
-        e.registerIntent(DragonNiteMC.plugin);
+        e.registerIntent(DragoniteMC.plugin);
         PendingConnection connection = e.getConnection();
         String name = connection.getName();
-        ProxyServer.getInstance().getScheduler().runAsync(DragonNiteMC.plugin,()->{
+        ProxyServer.getInstance().getScheduler().runAsync(DragoniteMC.plugin,()->{
             Optional<OfflineData> offlineData = offlinePlayerManager.getPlayerDataOrRequest(name);
 
             if (offlineData.isEmpty()){
                 e.setCancelled(true);
                 e.setCancelReason(new MessageBuilder("&c玩家資料獲取失敗", "&e請稍候再嘗試進入。").build());
-                e.completeIntent(DragonNiteMC.plugin);
+                e.completeIntent(DragoniteMC.plugin);
                 return;
             }
 
@@ -50,22 +50,22 @@ public class PlayerDataListener implements Listener {
             data.setLastLogin(Instant.now().toEpochMilli());
             Callback<PlayerVerifyCompletedEvent> callback = (ex, throwable1) -> offlinePlayerManager.saveToSQL(ex.getOfflinePlayer());
             ProxyServer.getInstance().getPluginManager().callEvent(new PlayerVerifyCompletedEvent(data, callback));
-            e.completeIntent(DragonNiteMC.plugin);
+            e.completeIntent(DragoniteMC.plugin);
         });
     }
 
     @EventHandler
     public void onSkinApply(final LoginEvent e) {
-        e.registerIntent(DragonNiteMC.plugin);
-        DragonNiteMC.getAPI().getSkinValueManager().getOrSaveSkinForPlayer(e.getConnection().getUniqueId()).whenComplete((skin, throwable) -> {
+        e.registerIntent(DragoniteMC.plugin);
+        DragoniteMC.getAPI().getSkinValueManager().getOrSaveSkinForPlayer(e.getConnection().getUniqueId()).whenComplete((skin, throwable) -> {
             if (throwable != null) {
                 throwable.printStackTrace();
-                e.completeIntent(DragonNiteMC.plugin);
+                e.completeIntent(DragoniteMC.plugin);
                 return;
             }
-            final LoginResult result = DragonNiteMC.getAPI().getSkinValueManager().editResult(e.getLoginResult(), skin);
+            final LoginResult result = DragoniteMC.getAPI().getSkinValueManager().editResult(e.getLoginResult(), skin);
             e.setLoginResult(result);
-            e.completeIntent(DragonNiteMC.plugin);
+            e.completeIntent(DragoniteMC.plugin);
         });
     }
 }

@@ -1,6 +1,6 @@
 package com.ericlam.mc.bungee.dnmc.main;
 
-import com.ericlam.mc.bungee.dnmc.DragonNiteAPI;
+import com.ericlam.mc.bungee.dnmc.DragoniteAPI;
 import com.ericlam.mc.bungee.dnmc.config.*;
 import com.google.inject.Inject;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -13,7 +13,7 @@ public class DNBungeeConfig implements MainConfig {
     public static LangConfig langConfig;
 
     @Inject
-    public DNBungeeConfig(Plugin plugin, DragonNiteAPI api) {
+    public DNBungeeConfig(Plugin plugin, DragoniteAPI api) {
         yamlManager = api.getConfigFactory(plugin)
                 .register(AvoidKickConfig.class)
                 .register(ChatFilterConfig.class)

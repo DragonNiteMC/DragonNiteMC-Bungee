@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.commands.dnmcbs.skins;
 
 import com.ericlam.mc.bungee.dnmc.builders.MessageBuilder;
 import com.ericlam.mc.bungee.dnmc.commands.caxerx.CommandNode;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.ericlam.mc.bungee.dnmc.managers.PlayerSkinManager;
 import com.ericlam.mc.bungee.dnmc.permission.Perm;
 import net.md_5.bungee.api.CommandSender;
@@ -18,13 +18,13 @@ public class SkinSearchCommand extends CommandNode {
     @Override
     public void executeCommand(CommandSender sender, List<String> args) {
         String name = args.get(0);
-        PlayerSkinManager skinManager = (PlayerSkinManager) DragonNiteMC.getAPI().getSkinValueManager();
+        PlayerSkinManager skinManager = (PlayerSkinManager) DragoniteMC.getAPI().getSkinValueManager();
         skinManager.containPlayerSkin(name).whenComplete(((aBoolean, throwable) -> {
             if (throwable != null){
                 throwable.printStackTrace();
                 return;
             }
-            String msg = DragonNiteMC.getAPI().getMainConfig().getPrefix() + "§a皮膚資料庫" + (aBoolean ? "存在著" : "並不存在") + "這個玩家。";
+            String msg = DragoniteMC.getAPI().getMainConfig().getPrefix() + "§a皮膚資料庫" + (aBoolean ? "存在著" : "並不存在") + "這個玩家。";
             MessageBuilder.sendMessage(sender, msg);
         }));
     }

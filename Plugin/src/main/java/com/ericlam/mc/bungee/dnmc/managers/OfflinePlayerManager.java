@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.managers;
 
 import com.ericlam.mc.bungee.dnmc.container.OfflineData;
 import com.ericlam.mc.bungee.dnmc.container.OfflinePlayer;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -32,7 +32,7 @@ public class OfflinePlayerManager implements PlayerManager {
     }
 
     public void createTable() {
-        try (Connection connection = DragonNiteMC.getAPI().getSQLDataSource().getConnection();
+        try (Connection connection = DragoniteMC.getAPI().getSQLDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `PlayerData` (`UUID` VARCHAR(40) NOT NULL PRIMARY KEY , `Name` TINYTEXT NOT NULL , `Premium` BOOLEAN NOT NULL , `LastLogin` BIGINT NOT NULL )")) {
             statement.execute();
         } catch (SQLException e) {
@@ -41,7 +41,7 @@ public class OfflinePlayerManager implements PlayerManager {
     }
 
     private Optional<OfflineData> requestPlayerData(String name) {
-        DragonNiteMC.plugin.getLogger().info("Requesting to Mojang API...");
+        DragoniteMC.plugin.getLogger().info("Requesting to Mojang API...");
         Optional<OfflineData> opt = nameMapping.stream().filter(data -> data.equalName(name)).findAny();
         if (opt.isPresent()) return opt;
         try {
@@ -59,11 +59,11 @@ public class OfflinePlayerManager implements PlayerManager {
             boolean premium;
             long lastlogin = Timestamp.from(Instant.now()).getTime();
             if (map == null) {
-                DragonNiteMC.plugin.getLogger().info("Player is not premium.");
+                DragoniteMC.plugin.getLogger().info("Player is not premium.");
                 uuid = UUID.randomUUID();
                 premium = false;
             } else {
-                DragonNiteMC.plugin.getLogger().info("Player is premium.");
+                DragoniteMC.plugin.getLogger().info("Player is premium.");
                 String id = ((String) map.get("id"));
                 StringBuilder sb = new StringBuilder(id);
                 String uid = sb.insert(8, "-").insert(13, "-").insert(18, "-").insert(23, "-").toString();
@@ -82,7 +82,7 @@ public class OfflinePlayerManager implements PlayerManager {
 
     public void saveToSQL(OfflinePlayer data) {
         if (saved.contains(data.getUniqueId())) return;
-        try (Connection connection = DragonNiteMC.getAPI().getSQLDataSource().getConnection();
+        try (Connection connection = DragoniteMC.getAPI().getSQLDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("INSERT INTO `PlayerData` VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE `Name`=?, `Premium`=?, `LastLogin`=?")) {
             statement.setString(1, data.getUniqueId().toString());
             statement.setString(2, data.getName());
@@ -93,7 +93,7 @@ public class OfflinePlayerManager implements PlayerManager {
             statement.setLong(7, data.lastLogin());
             statement.execute();
             this.saved.add(data.getUniqueId());
-            DragonNiteMC.plugin.getLogger().info(data.getName() + "'s data saved");
+            DragoniteMC.plugin.getLogger().info(data.getName() + "'s data saved");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,7 +102,7 @@ public class OfflinePlayerManager implements PlayerManager {
     public Optional<UUID> getPlayerUUID(String name) {
         Optional<UUID> uuid = nameMapping.stream().filter(data -> data.equalName(name)).map(OfflineData::getUniqueId).findAny();
         if (uuid.isPresent()) return uuid;
-        try (Connection connection = DragonNiteMC.getAPI().getSQLDataSource().getConnection();
+        try (Connection connection = DragoniteMC.getAPI().getSQLDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT UUID FROM `PlayerData` WHERE Name=? AND Premium=?")) {
             statement.setString(1, name);
             statement.setBoolean(2, false);
@@ -116,7 +116,7 @@ public class OfflinePlayerManager implements PlayerManager {
 
     private OfflinePlayer getPlayerData(UUID uuid) {
         return nameMapping.stream().filter(d -> d.equalUUID(uuid)).findAny().orElseGet(() -> {
-            try (Connection connection = DragonNiteMC.getAPI().getSQLDataSource().getConnection();
+            try (Connection connection = DragoniteMC.getAPI().getSQLDataSource().getConnection();
                  PreparedStatement statement = connection.prepareStatement("SELECT * FROM `PlayerData` WHERE `UUID`=?")) {
                 statement.setString(1, uuid.toString());
                 ResultSet resultSet = statement.executeQuery();
@@ -137,7 +137,7 @@ public class OfflinePlayerManager implements PlayerManager {
 
     private OfflinePlayer getPlayerData(String name) {
         return nameMapping.stream().filter(d -> d.equalName(name)).findAny().orElseGet(() -> {
-            try (Connection connection = DragonNiteMC.getAPI().getSQLDataSource().getConnection();
+            try (Connection connection = DragoniteMC.getAPI().getSQLDataSource().getConnection();
                  PreparedStatement statement = connection.prepareStatement("SELECT * FROM `PlayerData` WHERE `Name`=?")) {
                 statement.setString(1, name);
                 ResultSet resultSet = statement.executeQuery();
@@ -159,7 +159,7 @@ public class OfflinePlayerManager implements PlayerManager {
     public Optional<OfflineData> getPlayerDataOrRequest(String player) {
         Optional<OfflineData> opt = nameMapping.stream().filter(data -> data.equalName(player)).findAny();
         if (opt.isPresent()) return opt;
-        try (Connection connection = DragonNiteMC.getAPI().getSQLDataSource().getConnection();
+        try (Connection connection = DragoniteMC.getAPI().getSQLDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM `PlayerData` WHERE `Name`=?")) {
             statement.setString(1, player);
             ResultSet resultSet = statement.executeQuery();

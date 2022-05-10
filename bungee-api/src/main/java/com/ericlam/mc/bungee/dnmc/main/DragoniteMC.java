@@ -1,6 +1,6 @@
 package com.ericlam.mc.bungee.dnmc.main;
 
-import com.ericlam.mc.bungee.dnmc.DragonNiteAPI;
+import com.ericlam.mc.bungee.dnmc.DragoniteAPI;
 import com.ericlam.mc.bungee.dnmc.RedisDataSource;
 import com.ericlam.mc.bungee.dnmc.SQLDataSource;
 import com.ericlam.mc.bungee.dnmc.builders.function.ChatRunnerManager;
@@ -16,9 +16,9 @@ import net.md_5.bungee.api.plugin.Plugin;
 /**
  * 從這裏獲取所有 API
  */
-public class DragonNiteMC implements DragonNiteAPI {
+public class DragoniteMC implements DragoniteAPI {
 
-    public static DragonNiteAPI getAPI() {
+    public static DragoniteAPI getAPI() {
         throw new RuntimeException("RUNTIME ERROR");
     }
 

@@ -8,7 +8,7 @@ import com.ericlam.mc.bungee.dnmc.implement.caxerx.command.CommandExecutor;
 import com.ericlam.mc.bungee.dnmc.listeners.JoinServerListeners;
 import com.ericlam.mc.bungee.dnmc.main.DNBungeeConfig;
 import com.ericlam.mc.bungee.dnmc.managers.*;
-import com.ericlam.mc.bungee.dnmc.updater.DragonNiteResourceManager;
+import com.ericlam.mc.bungee.dnmc.updater.DragoniteResourceManager;
 import com.ericlam.mc.bungee.dnmc.updater.SpigotResourceManager;
 import com.google.inject.Binder;
 import com.google.inject.Module;
@@ -41,7 +41,7 @@ public class ModuleImplementor implements Module {
         binder.bind(JoinMeManager.class).in(Scopes.SINGLETON);
         binder.bind(JoinServerListeners.class).in(Scopes.SINGLETON);
         binder.bind(SpigotResourceManager.class).in(Scopes.SINGLETON);
-        binder.bind(DragonNiteResourceManager.class).in(Scopes.SINGLETON);
+        binder.bind(DragoniteResourceManager.class).in(Scopes.SINGLETON);
 
         preImplement.forEach((cls,obj)->binder.bind(cls).toInstance(obj));
     }

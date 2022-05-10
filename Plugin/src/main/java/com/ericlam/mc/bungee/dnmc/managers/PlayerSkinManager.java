@@ -5,7 +5,7 @@ import com.ericlam.mc.bungee.dnmc.SQLDataSource;
 import com.ericlam.mc.bungee.dnmc.container.PlayerSkin;
 import com.ericlam.mc.bungee.dnmc.container.SkinProperty;
 import com.ericlam.mc.bungee.dnmc.exceptions.SkinUpdateTooFastException;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.google.inject.Inject;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -156,7 +156,7 @@ public class PlayerSkinManager implements SkinValueManager {
     }
 
     private CompletableFuture<PlayerSkin> updateSkinTask(Connection connection, UUID uuid){
-        return HttpRequest.getSkinProperty(uuid).thenCombineAsync(DragonNiteMC.getAPI().getPlayerManager().getOfflinePlayer(uuid),(skinProperty, offlinePlayer) -> {
+        return HttpRequest.getSkinProperty(uuid).thenCombineAsync(DragoniteMC.getAPI().getPlayerManager().getOfflinePlayer(uuid),(skinProperty, offlinePlayer) -> {
             offlinePlayer.ifPresent(player->{
                 if (skinProperty.isPremium() && player.isPremium()){
                     try(PreparedStatement save = connection.prepareStatement("INSERT INTO `Skin_data` VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE `PlayerName`=?, `Value`=?, `Signature`=?, `TimeStamp`=?")){

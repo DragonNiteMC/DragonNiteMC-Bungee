@@ -3,7 +3,7 @@ package com.ericlam.mc.bungee.dnmc.implement;
 import com.ericlam.mc.bungee.dnmc.builders.MessageBuilder;
 import com.ericlam.mc.bungee.dnmc.builders.function.ChatRunner;
 import com.ericlam.mc.bungee.dnmc.builders.function.ChatRunnerManager;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
@@ -31,7 +31,7 @@ public class ChatRunnerClicker implements ChatRunnerManager, Listener {
     @Override
     public void registerTimeout(UUID id, ChatRunner runner, int timeout) {
         runnerMap.put(id,runner);
-        ProxyServer.getInstance().getScheduler().schedule(DragonNiteMC.plugin,()->runnerMap.remove(id),timeout, TimeUnit.SECONDS);
+        ProxyServer.getInstance().getScheduler().schedule(DragoniteMC.plugin,()->runnerMap.remove(id),timeout, TimeUnit.SECONDS);
     }
 
     @EventHandler
@@ -50,7 +50,7 @@ public class ChatRunnerClicker implements ChatRunnerManager, Listener {
         }
         ChatRunner runner = runnerMap.get(uuid);
         if (runner == null) {
-            MessageBuilder.sendMessage(player, DragonNiteMC.getAPI().getMainConfig().getPrefix()+"&c文字點擊已過期。");
+            MessageBuilder.sendMessage(player, DragoniteMC.getAPI().getMainConfig().getPrefix()+"&c文字點擊已過期。");
             return;
         }
         runner.run(player);

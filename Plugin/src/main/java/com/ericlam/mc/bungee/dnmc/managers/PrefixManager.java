@@ -2,7 +2,7 @@ package com.ericlam.mc.bungee.dnmc.managers;
 
 import com.ericlam.mc.bungee.dnmc.SQLDataSource;
 import com.ericlam.mc.bungee.dnmc.container.ChatFormat;
-import com.ericlam.mc.bungee.dnmc.main.DragonNiteMC;
+import com.ericlam.mc.bungee.dnmc.main.DragoniteMC;
 import com.google.inject.Inject;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.cacheddata.CachedDataManager;
@@ -34,7 +34,7 @@ public class PrefixManager implements ChatFormatManager {
     @Inject
     public PrefixManager(SQLDataSource sqlDataSource) {
         this.sqlDataSource = sqlDataSource;
-        DragonNiteMC.plugin.getLogger().info("Getting chat format data......");
+        DragoniteMC.plugin.getLogger().info("Getting chat format data......");
         try (Connection connection = sqlDataSource.getConnection();
              PreparedStatement exist = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `Chat_format` (`Group` VARCHAR(15) NOT NULL PRIMARY KEY , `Format` TEXT NOT NULL , `Priority` INT NOT NULL )");
              PreparedStatement select = connection.prepareStatement("SELECT * FROM `Chat_format`")) {

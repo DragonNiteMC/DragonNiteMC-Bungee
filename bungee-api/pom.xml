@@ -2,8 +2,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.dragonnite.mc</groupId>
-        <artifactId>dragonnitemc-bungee</artifactId>
+        <groupId>com.dragonite.mc</groupId>
+        <artifactId>dragonitemc-bungee</artifactId>
         <version>2.6.3</version>
     </parent>
 

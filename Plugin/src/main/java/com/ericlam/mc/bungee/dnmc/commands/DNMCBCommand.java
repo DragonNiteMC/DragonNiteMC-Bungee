@@ -9,7 +9,7 @@ import com.ericlam.mc.bungee.dnmc.permission.Perm;
 public class DNMCBCommand extends DefaultCommand {
 
     public DNMCBCommand() {
-        super(null, "dnmcb", Perm.ADMIN, "dnmc 主指令", "dragonnitemcbungee", "dnmcbungee");
+        super(null, "dnmcb", Perm.ADMIN, "dnmc 主指令", "dragonitemcbungee", "dnmcbungee");
         this.addSub(new UpdateChatFormatCommand(this));
         this.addSub(new SkinMainCommand(this));
         this.addSub(new VersionCommand(this));

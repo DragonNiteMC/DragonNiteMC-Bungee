@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
-public class DragonNiteResourceManager implements ResourceManager {
+public class DragoniteResourceManager implements ResourceManager {
 
     private static final String WEB_API = "https://updater.pulogo.xyz/plugin/";
     private static final Gson GSON = new Gson();
@@ -44,7 +44,7 @@ public class DragonNiteResourceManager implements ResourceManager {
 
     @Override
     public void fetchLatestVersion(String plugin, Consumer<String> afterRun, Consumer<Exception> errorRun) {
-        ProxyServer.getInstance().getScheduler().runAsync(bungeePlugin, new DragonNitePluginUpdate(plugin, afterRun, errorRun));
+        ProxyServer.getInstance().getScheduler().runAsync(bungeePlugin, new DragonitePluginUpdate(plugin, afterRun, errorRun));
     }
 
     @Override
@@ -57,9 +57,9 @@ public class DragonNiteResourceManager implements ResourceManager {
     }
 
     @SuppressWarnings("unchecked")
-    private class DragonNitePluginUpdate extends PluginUpdateRunnable {
+    private class DragonitePluginUpdate extends PluginUpdateRunnable {
 
-        protected DragonNitePluginUpdate(String plugin, Consumer<String> afterRun, Consumer<Exception> errorRun) {
+        protected DragonitePluginUpdate(String plugin, Consumer<String> afterRun, Consumer<Exception> errorRun) {
             super(plugin, afterRun, errorRun);
         }
 

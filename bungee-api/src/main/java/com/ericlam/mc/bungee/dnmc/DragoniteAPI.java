@@ -13,7 +13,7 @@ import net.md_5.bungee.api.plugin.Plugin;
 /**
  * 本服 API
  */
-public interface DragonNiteAPI {
+public interface DragoniteAPI {
 
     SQLDataSource getSQLDataSource();
 
